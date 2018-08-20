@@ -17,12 +17,12 @@ object Main extends App {
 
   val source: Source[User, NotUsed] = Source.fromPublisher(User.streamAll())
 
-  /*
-  def convertToCSVLine(u: User): immutable.Iterable[String] = immutable.Seq(u.id.toString, u.name, u.age.toString)
-  val flow = Flow[User].map(convertToCSVLine).via(CsvFormatting.format(charset = Charset.forName("UTF-8")))
-  val csvOutputPath = Paths.get("./output.csv")
-  val sink =  FileIO.toPath(csvOutputPath)
-*/
+  /*  out put csv
+      def convertToCSVLine(u: User): immutable.Iterable[String] = immutable.Seq(u.id.toString, u.name, u.age.toString)
+      val flow = Flow[User].map(convertToCSVLine).via(CsvFormatting.format(charset = Charset.forName("UTF-8")))
+      val csvOutputPath = Paths.get("./output.csv")
+      val sink =  FileIO.toPath(csvOutputPath)
+  */
 
   val flow: Flow[User, User, NotUsed] = Flow[User].map(_.copy(age = 5))
 
